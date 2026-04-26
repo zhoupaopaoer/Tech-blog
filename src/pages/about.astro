@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../config/site";
+---
+
+<BaseLayout title={`关于 | ${siteConfig.title}`} description="关于这个博客系统">
+  <section class="container section narrow">
+    <div class="page-title">
+      <p class="eyebrow">About</p>
+      <h1>关于这个博客</h1>
+    </div>
+    <div class="prose">
+      <p>
+        这是一个以 <strong>Astro</strong> 为核心的静态博客系统，默认适合部署到
+        <strong>GitHub Pages</strong> 或 <strong>Cloudflare Pages</strong>。
+      </p>
+      <p>如果你想把它扩展成作品集、项目展示页或知识库，这个结构也足够干净。</p>
+      <p>常见自定义入口：</p>
+      <ul>
+        <li>站点标题与社交链接：`src/config/site.ts`</li>
+        <li>博客文章：`src/content/blog/`</li>
+        <li>首页与布局：`src/pages/`、`src/layouts/`</li>
+        <li>全局样式：`src/styles/global.css`</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

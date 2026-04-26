@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostCard from "../components/PostCard.astro";
+import { siteConfig } from "../config/site";
+import { getAllTags, getPublishedPosts } from "../utils/blog";
+import { withBase } from "../utils/links";
+
+const posts = await getPublishedPosts();
+const tags = getAllTags(posts);
+const featuredPosts = posts.slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="hero container">
+    <div class="hero-copy">
+      <p class="eyebrow">Static-first personal publishing</p>
+      <h1>{siteConfig.title}</h1>
+      <p class="hero-text">{siteConfig.description}</p>
+      <div class="hero-actions">
+        <a class="button primary" href={withBase("/blog/")}>开始阅读</a>
+        <a class="button secondary" href={withBase("/about/")}>了解站点</a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <p>适合的场景</p>
+      <ul>
+        <li>技术写作</li>
+        <li>个人随笔</li>
+        <li>作品集展示</li>
+        <li>低成本全球分发</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="section-heading">
+      <h2>最新文章</h2>
+      <a href={withBase("/blog/")}>查看全部</a>
+    </div>
+    <div class="post-grid">
+      {featuredPosts.map((post) => <PostCard post={post} />)}
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="section-heading">
+      <h2>标签导航</h2>
+    </div>
+    <div class="tag-list">
+      {
+        tags.map((tag) => (
+          <a class="tag" href={withBase(`/tags/${encodeURIComponent(tag)}/`)}>
+            #{tag}
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

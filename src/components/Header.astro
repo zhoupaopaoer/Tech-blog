@@ -1,0 +1,29 @@
+---
+import { siteConfig } from "../config/site";
+import { withBase } from "../utils/links";
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={withBase("/")}>{siteConfig.title}</a>
+    <nav class="nav">
+      {
+        siteConfig.nav.map((item) => {
+          const href = withBase(item.href);
+          const isActive =
+            item.href === "/"
+              ? currentPath === withBase("/")
+              : currentPath.startsWith(href);
+
+          return (
+            <a class:list={["nav-link", { active: isActive }]} href={href}>
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+  </div>
+</header>
