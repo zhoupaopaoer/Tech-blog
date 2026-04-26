@@ -9,7 +9,7 @@ export const siteConfig = {
     { href: "/about", label: "关于" }
   ],
   socialLinks: [
-    { href: "https://github.com/yourname", label: "GitHub" },
-    { href: "https://x.com/yourname", label: "X / Twitter" }
+    { href: "https://github.com/zhoupaopaoer", label: "GitHub" },
+    // { href: "https://x.com/yourname", label: "X / Twitter" }
   ]
 } as const;
