@@ -1,16 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
   <defs>
-    <linearGradient id="g3" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#fbf4ea"/>
-      <stop offset="100%" stop-color="#d9e7ff"/>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f2efe8"/>
+      <stop offset="100%" stop-color="#d9e2ef"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="720" fill="url(#g3)"/>
-  <circle cx="890" cy="216" r="140" fill="#6f90e8" opacity="0.22"/>
-  <circle cx="1030" cy="528" r="160" fill="#ffb27a" opacity="0.18"/>
-  <text x="100" y="232" fill="#1e2740" font-family="Arial, sans-serif" font-size="90" font-weight="700">关于我</text>
-  <text x="102" y="332" fill="#1e2740" font-family="Arial, sans-serif" font-size="90" font-weight="700">与这座博客</text>
-  <text x="106" y="422" fill="#55607d" font-family="Arial, sans-serif" font-size="34">从学习记录到个人技术写作，一点点搭建自己的线上作品。</text>
-  <rect x="102" y="494" width="170" height="54" rx="27" fill="#1e2740"/>
-  <text x="138" y="530" fill="#ffffff" font-family="Arial, sans-serif" font-size="26">Zhou's note</text>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <circle cx="940" cy="180" r="120" fill="#6f8dd8" opacity="0.2"/>
+  <circle cx="1040" cy="560" r="120" fill="#d7aa7c" opacity="0.18"/>
+  <text x="96" y="220" fill="#1f2740" font-family="Arial, sans-serif" font-size="76" font-weight="700">关于我与这座博客</text>
+  <text x="100" y="318" fill="#59637f" font-family="Arial, sans-serif" font-size="30">从学习记录到个人技术写作，一点点搭建自己的线上作品。</text>
+  <text x="98" y="560" fill="#1f2740" font-family="Arial, sans-serif" font-size="26">关于我</text>
 </svg>

@@ -1,20 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
   <defs>
-    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#111729"/>
-      <stop offset="100%" stop-color="#243c7f"/>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#152347"/>
+      <stop offset="100%" stop-color="#1f315f"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="720" fill="url(#g1)"/>
-  <circle cx="940" cy="138" r="120" fill="#4bb0ff" opacity="0.32"/>
-  <circle cx="250" cy="620" r="170" fill="#ff8c5f" opacity="0.16"/>
-  <rect x="94" y="90" width="290" height="52" rx="26" fill="#ff9f73"/>
-  <text x="118" y="124" fill="#fff7ef" font-family="Arial, sans-serif" font-size="26">Astro + GitHub Pages</text>
-  <text x="96" y="286" fill="#f7f9ff" font-family="Arial, sans-serif" font-size="92" font-weight="700">用 Astro</text>
-  <text x="96" y="390" fill="#f7f9ff" font-family="Arial, sans-serif" font-size="92" font-weight="700">搭建静态博客</text>
-  <text x="100" y="470" fill="#cfd9ff" font-family="Arial, sans-serif" font-size="34">从内容结构到部署链路的一套轻量方案</text>
-  <g fill="none" stroke="#ffb083" opacity="0.55">
-    <path d="M760 520c70-68 118-105 214-98"/>
-    <path d="M724 568c98-108 173-160 328-148"/>
-  </g>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <circle cx="975" cy="150" r="110" fill="#487ed8" opacity="0.34"/>
+  <circle cx="210" cy="590" r="150" fill="#a87974" opacity="0.16"/>
+  <rect x="92" y="88" width="220" height="40" rx="20" fill="#b77c64"/>
+  <text x="120" y="116" fill="#fbeee9" font-family="Arial, sans-serif" font-size="22">GitHub Pages</text>
+  <text x="96" y="240" fill="#ffffff" font-family="Arial, sans-serif" font-size="78" font-weight="700">用 Astro</text>
+  <text x="96" y="328" fill="#ffffff" font-family="Arial, sans-serif" font-size="78" font-weight="700">搭建静态博客</text>
+  <text x="100" y="412" fill="#dde4f6" font-family="Arial, sans-serif" font-size="28">从零开始初始化一个可部署到 GitHub Pages 和 Cloudflare Pages 的个人博客。</text>
+  <text x="98" y="560" fill="#ffffff" font-family="Arial, sans-serif" font-size="26">技术搭建</text>
 </svg>

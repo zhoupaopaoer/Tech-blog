@@ -1,5 +1,5 @@
 export const siteConfig = {
-  title: "Zhou's Notes",
+  title: "Zhou的小站",
   description: "记录产品、技术和日常思考的个人数字花园。",
   author: "Zhou",
   lang: "zh-CN",

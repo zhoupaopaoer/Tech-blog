@@ -1,24 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
   <defs>
-    <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#171b24"/>
-      <stop offset="100%" stop-color="#2f2b48"/>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1b2332"/>
+      <stop offset="100%" stop-color="#2c3042"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="720" fill="url(#g2)"/>
-  <rect x="86" y="86" width="250" height="48" rx="24" fill="#d4ff78"/>
-  <text x="118" y="119" fill="#162010" font-family="Arial, sans-serif" font-size="24">Static Writing System</text>
-  <text x="92" y="258" fill="#fff5e9" font-family="Arial, sans-serif" font-size="84" font-weight="700">为什么个人博客</text>
-  <text x="92" y="354" fill="#fff5e9" font-family="Arial, sans-serif" font-size="84" font-weight="700">更适合静态站</text>
-  <text x="95" y="438" fill="#d8d4ef" font-family="Arial, sans-serif" font-size="32">低成本、可迁移、适合长期积累</text>
-  <g stroke="#8da4ff" opacity="0.3">
-    <path d="M780 90v540"/>
-    <path d="M900 90v540"/>
-    <path d="M1020 90v540"/>
-    <path d="M1140 90v540"/>
-    <path d="M760 180h360"/>
-    <path d="M760 300h360"/>
-    <path d="M760 420h360"/>
-    <path d="M760 540h360"/>
-  </g>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <rect x="92" y="92" width="250" height="42" rx="21" fill="#cfd38c"/>
+  <text x="124" y="119" fill="#28301d" font-family="Arial, sans-serif" font-size="21">Static Writing System</text>
+  <text x="94" y="238" fill="#fffaf1" font-family="Arial, sans-serif" font-size="74" font-weight="700">为什么个人博客</text>
+  <text x="94" y="322" fill="#fffaf1" font-family="Arial, sans-serif" font-size="74" font-weight="700">更适合静态站</text>
+  <text x="98" y="406" fill="#d8d8e4" font-family="Arial, sans-serif" font-size="28">低成本、可迁移、适合长期积累</text>
+  <text x="98" y="560" fill="#ffffff" font-family="Arial, sans-serif" font-size="26">写作系统</text>
 </svg>

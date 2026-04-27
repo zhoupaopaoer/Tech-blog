@@ -20,7 +20,6 @@ const pagination = paginatePosts(posts, 1, 12);
       <a class="hero-brand" href={withBase("/")}>
         <span class="hero-brand-mark">Z.</span>
         <span class="hero-brand-copy">
-          <span class="hero-brand-kicker">PERSONAL WEB</span>
           <span class="hero-brand-title">{siteConfig.title}</span>
         </span>
       </a>
@@ -35,20 +34,10 @@ const pagination = paginatePosts(posts, 1, 12);
       </nav>
     </div>
     <div class="hero-banner-inner">
-      <p class="hero-banner-tip">欢迎来到我的博客</p>
       <h1>{siteConfig.homeHero.title}</h1>
       <p>{siteConfig.homeHero.subtitle}</p>
-      <div class="hero-banner-actions">
-        {
-          siteConfig.homeHero.categories.map((category) => (
-            <a class="hero-pill" href={withBase(`/categories/${encodeURIComponent(category)}/`)}>
-              {category}
-            </a>
-          ))
-        }
-      </div>
       <button class="hero-scroll" id="hero-scroll" type="button" aria-label="开始阅读并滚动到下一屏">
-        <span>开始阅读</span>
+        <span class="hero-scroll-text">开始阅读</span>
         <span class="hero-scroll-arrow" aria-hidden="true">↓</span>
       </button>
       <p class="hero-typing-line" id="hero-typing"></p>
