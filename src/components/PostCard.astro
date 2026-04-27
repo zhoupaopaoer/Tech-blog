@@ -32,6 +32,11 @@ const coverImage = post.data.hero || "/images/cover-astro.svg";
     </div>
     <div class="post-cover-wrap">
       <img class="post-cover" src={withBase(coverImage)} alt={post.data.title} />
+      <div class="post-cover-overlay">
+        <h3 class="post-cover-title">{post.data.title}</h3>
+        <p class="post-cover-subtitle">{post.data.description}</p>
+        <span class="post-cover-author">{post.data.category}</span>
+      </div>
     </div>
   </a>
 </article>

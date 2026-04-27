@@ -433,8 +433,9 @@ img {
 }
 
 .hero-banner-full {
-  min-height: calc(100vh - 92px);
+  min-height: 100vh;
   border-radius: var(--radius-xl);
+  margin-top: -1.4rem;
 }
 
 .hero-topbar {
@@ -447,11 +448,7 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.7rem 0.9rem;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow: var(--shadow);
+  padding: 0.3rem 0.2rem;
 }
 
 .hero-brand {
@@ -479,7 +476,7 @@ img {
 }
 
 .hero-brand-kicker {
-  color: #7d879b;
+  color: rgba(255, 255, 255, 0.82);
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -489,27 +486,25 @@ img {
   font-size: 1.18rem;
   font-weight: 800;
   letter-spacing: -0.04em;
+  color: white;
 }
 
 .hero-nav {
   display: flex;
   gap: 0.35rem;
-  padding: 0.3rem;
-  border-radius: 999px;
-  background: rgba(247, 247, 247, 0.9);
-  border: 1px solid rgba(232, 235, 242, 0.9);
+  padding: 0;
 }
 
 .hero-nav-link {
-  padding: 0.82rem 1.2rem;
-  border-radius: 999px;
-  color: #667187;
+  padding: 0.82rem 1rem;
+  color: rgba(255, 255, 255, 0.88);
   font-weight: 700;
+  transition: color 180ms ease, transform 180ms ease;
 }
 
 .hero-nav-link:hover {
-  background: white;
-  color: var(--text);
+  color: #d9c2ff;
+  transform: translateY(-1px);
 }
 
 .hero-banner::before {
@@ -587,6 +582,20 @@ img {
   animation: hero-bounce 1.5s ease-in-out infinite;
 }
 
+.hero-typing-line {
+  margin: 1.2rem auto 0;
+  min-height: 1.6rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.04em;
+}
+
+.hero-typing-line::after {
+  content: "|";
+  margin-left: 0.12rem;
+  animation: hero-caret 0.9s steps(1) infinite;
+}
+
 @keyframes hero-bounce {
   0%,
   100% {
@@ -594,6 +603,17 @@ img {
   }
   50% {
     transform: translateY(6px);
+  }
+}
+
+@keyframes hero-caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
   }
 }
 
@@ -716,8 +736,10 @@ img {
 }
 
 .post-cover-wrap {
+  position: relative;
   min-height: 100%;
   background: #edf1f8;
+  overflow: hidden;
 }
 
 .post-cover {
@@ -727,26 +749,57 @@ img {
   transition: transform 320ms ease, filter 320ms ease;
 }
 
+.post-cover-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  color: white;
+  background: linear-gradient(180deg, rgba(13, 24, 44, 0.28), rgba(13, 24, 44, 0.48));
+}
+
+.post-cover-title,
+.post-cover-subtitle,
+.post-cover-author {
+  transition: transform 260ms ease, text-shadow 260ms ease;
+}
+
+.post-cover-title {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.16;
+}
+
+.post-cover-subtitle {
+  margin: 0;
+  font-size: 1.08rem;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.post-cover-author {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
 .post-card:hover {
-  transform: translateY(-4px);
   box-shadow: 0 22px 42px rgba(29, 42, 63, 0.12);
-}
-
-.post-card:hover .post-copy h2 {
-  transform: translateY(-8px);
-  color: #222d42;
-  text-shadow: 0 10px 20px rgba(41, 57, 89, 0.12);
-}
-
-.post-card:hover .post-copy p,
-.post-card:hover .post-taxonomy,
-.post-card:hover .post-footer-row {
-  transform: translateY(-4px);
 }
 
 .post-card:hover .post-cover {
   transform: scale(1.04);
   filter: saturate(1.05);
+}
+
+.post-card:hover .post-cover-title {
+  transform: translateY(-10px) scale(1.04);
+  text-shadow: 0 14px 26px rgba(0, 0, 0, 0.22);
+}
+
+.post-card:hover .post-cover-subtitle,
+.post-card:hover .post-cover-author {
+  transform: translateY(-4px);
 }
 
 .article-page {
@@ -847,6 +900,48 @@ img {
   padding: 1rem 1.1rem;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.6rem;
+}
+
+.pagination-pages {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.pagination-link,
+.pagination-page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.8rem;
+  min-height: 2.8rem;
+  padding: 0.65rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.pagination-page.active,
+.pagination-link:hover,
+.pagination-page:hover {
+  background: #2b3245;
+  border-color: #2b3245;
+  color: white;
+}
+
+.pagination-link.disabled {
+  opacity: 0.4;
+}
+
 .site-footer {
   margin-top: 3rem;
 }
@@ -917,7 +1012,7 @@ img {
   }
 
   .hero-banner-full {
-    min-height: calc(100vh - 92px);
+    min-height: 100vh;
   }
 
   .hero-banner-actions {

@@ -1,10 +1,12 @@
 ---
 import PortalLayout from "../../layouts/PortalLayout.astro";
 import PostCard from "../../components/PostCard.astro";
+import Pagination from "../../components/Pagination.astro";
 import { siteConfig } from "../../config/site";
-import { getPublishedPosts } from "../../utils/blog";
+import { getPublishedPosts, paginatePosts } from "../../utils/blog";
 
 const posts = await getPublishedPosts();
+const pagination = paginatePosts(posts, 1, 12);
 ---
 
 <PortalLayout title={`文章 | ${siteConfig.title}`} description="博客文章列表页">
@@ -15,7 +17,8 @@ const posts = await getPublishedPosts();
       <p>所有文章都来自 `src/content/blog/` 下的 Markdown 文件，按发布时间倒序排列。</p>
     </div>
     <div class="feed-list">
-      {posts.map((post, index) => <PostCard post={post} index={index} />)}
+      {pagination.items.map((post, index) => <PostCard post={post} index={index} />)}
     </div>
+    <Pagination page={pagination.page} totalPages={pagination.totalPages} basePath="/blog/" />
   </section>
 </PortalLayout>

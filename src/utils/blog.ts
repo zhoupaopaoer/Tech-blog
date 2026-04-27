@@ -68,3 +68,17 @@ export function getRelatedPosts(post: BlogPost, posts: BlogPost[], limit = 3) {
     .slice(0, limit)
     .map((item) => item.post);
 }
+
+export function paginatePosts(posts: BlogPost[], page: number, pageSize = 12) {
+  const totalPages = Math.max(1, Math.ceil(posts.length / pageSize));
+  const currentPage = Math.min(Math.max(page, 1), totalPages);
+  const start = (currentPage - 1) * pageSize;
+  const end = start + pageSize;
+
+  return {
+    page: currentPage,
+    pageSize,
+    totalPages,
+    items: posts.slice(start, end)
+  };
+}

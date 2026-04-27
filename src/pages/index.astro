@@ -2,12 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SidebarLeft from "../components/SidebarLeft.astro";
 import PostCard from "../components/PostCard.astro";
+import Pagination from "../components/Pagination.astro";
 import { siteConfig } from "../config/site";
-import { getPublishedPosts } from "../utils/blog";
+import { getPublishedPosts, paginatePosts } from "../utils/blog";
 import { withBase } from "../utils/links";
 
 const posts = await getPublishedPosts();
-const recentPosts = posts.slice(0, 6);
+const pagination = paginatePosts(posts, 1, 12);
 ---
 
 <BaseLayout hideHeader={true}>
@@ -50,6 +51,7 @@ const recentPosts = posts.slice(0, 6);
         <span>开始阅读</span>
         <span class="hero-scroll-arrow" aria-hidden="true">↓</span>
       </button>
+      <p class="hero-typing-line" id="hero-typing"></p>
     </div>
   </section>
 
@@ -59,14 +61,20 @@ const recentPosts = posts.slice(0, 6);
     </aside>
     <div class="home-feed-main">
       <div class="feed-list">
-        {recentPosts.map((post, index) => <PostCard post={post} index={index} />)}
+        {pagination.items.map((post, index) => <PostCard post={post} index={index} />)}
       </div>
+      <Pagination page={pagination.page} totalPages={pagination.totalPages} basePath="/" />
     </div>
   </section>
 
   <script is:inline>
     const heroScrollButton = document.querySelector("#hero-scroll");
     const homeFeedSection = document.querySelector("#home-feed");
+    const heroTyping = document.querySelector("#hero-typing");
+    const typingTexts = ["欢迎来到我的博客！", "努力不一定成功，放弃一定失败"];
+    let typingIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
 
     heroScrollButton?.addEventListener("click", () => {
       homeFeedSection?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -79,5 +87,33 @@ const recentPosts = posts.slice(0, 6);
     heroScrollButton?.addEventListener("mouseleave", () => {
       heroScrollButton.classList.remove("active");
     });
+
+    function tickTyping() {
+      if (!heroTyping) return;
+      const current = typingTexts[typingIndex];
+
+      if (!deleting) {
+        charIndex += 1;
+        heroTyping.textContent = current.slice(0, charIndex);
+
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(tickTyping, 1200);
+          return;
+        }
+      } else {
+        charIndex -= 1;
+        heroTyping.textContent = current.slice(0, charIndex);
+
+        if (charIndex === 0) {
+          deleting = false;
+          typingIndex = (typingIndex + 1) % typingTexts.length;
+        }
+      }
+
+      setTimeout(tickTyping, deleting ? 50 : 90);
+    }
+
+    tickTyping();
   </script>
 </BaseLayout>
