@@ -3,6 +3,7 @@ title: "为什么个人博客适合静态站"
 description: "个人博客对稳定性、成本和可迁移性的要求，往往比动态能力更重要。"
 pubDate: 2026-04-24
 updatedDate: 2026-04-26
+category: 写作系统
 tags:
   - Hugo
   - Cloudflare Pages

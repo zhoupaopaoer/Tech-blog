@@ -1,0 +1,91 @@
+---
+import { siteConfig } from "../config/site";
+import {
+  getAllCategories,
+  getArchiveGroups,
+  getPublishedPosts
+} from "../utils/blog";
+import { withBase } from "../utils/links";
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const posts = await getPublishedPosts();
+const categories = getAllCategories(posts);
+const archives = getArchiveGroups(posts);
+
+function isActive(path: string) {
+  const href = withBase(path);
+  return path === "/"
+    ? currentPath === withBase("/")
+    : currentPath.startsWith(href);
+}
+---
+
+<div class="sidebar-stack">
+  <section class="sidebar-card profile-card">
+    <div class="profile-avatar">Z</div>
+    <div class="profile-copy">
+      <p class="sidebar-kicker">About Me</p>
+      <h2>{siteConfig.profile.name}</h2>
+      <p class="profile-tagline">{siteConfig.profile.tagline}</p>
+      <p>{siteConfig.profile.bio}</p>
+    </div>
+    <div class="profile-meta">
+      <span>{siteConfig.profile.location}</span>
+      <a href={`mailto:${siteConfig.profile.email}`}>{siteConfig.profile.email}</a>
+    </div>
+  </section>
+
+  <section class="sidebar-card">
+    <div class="sidebar-heading">
+      <p class="sidebar-kicker">Navigation</p>
+      <h3>站点导航</h3>
+    </div>
+    <nav class="sidebar-nav">
+      {
+        siteConfig.nav.map((item) => (
+          <a class:list={["sidebar-link", { active: isActive(item.href) }]} href={withBase(item.href)}>
+            <span>{item.label}</span>
+          </a>
+        ))
+      }
+    </nav>
+  </section>
+
+  <section class="sidebar-card">
+    <div class="sidebar-heading">
+      <p class="sidebar-kicker">Categories</p>
+      <h3>文章分类</h3>
+    </div>
+    <div class="sidebar-list">
+      {
+        categories.map((category) => (
+          <a class="sidebar-row" href={withBase(`/categories/${encodeURIComponent(category)}/`)}>
+            <span>{category}</span>
+            <span>{posts.filter((post) => post.data.category === category).length}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="sidebar-card">
+    <div class="sidebar-heading">
+      <p class="sidebar-kicker">Archive</p>
+      <h3>历史归档</h3>
+    </div>
+    <div class="sidebar-list">
+      {
+        archives.map((archive) => (
+          <a class="sidebar-row" href={withBase(`/archive/#year-${archive.year}`)}>
+            <span>{archive.year}</span>
+            <span>{archive.posts.length}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</div>

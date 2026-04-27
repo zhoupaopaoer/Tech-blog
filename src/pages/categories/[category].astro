@@ -2,27 +2,27 @@
 import PortalLayout from "../../layouts/PortalLayout.astro";
 import PostCard from "../../components/PostCard.astro";
 import { siteConfig } from "../../config/site";
-import { getAllTags, getPublishedPosts } from "../../utils/blog";
+import { getAllCategories, getPublishedPosts } from "../../utils/blog";
 
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
-  return getAllTags(posts).map((tag) => ({
-    params: { tag },
+  return getAllCategories(posts).map((category) => ({
+    params: { category },
     props: {
-      tag,
-      posts: posts.filter((post) => post.data.tags.includes(tag))
+      category,
+      posts: posts.filter((post) => post.data.category === category)
     }
   }));
 }
 
-const { tag, posts } = Astro.props;
+const { category, posts } = Astro.props;
 ---
 
-<PortalLayout title={`标签：${tag} | ${siteConfig.title}`} description={`标签 ${tag} 的文章列表`}>
+<PortalLayout title={`分类：${category} | ${siteConfig.title}`} description={`分类 ${category} 的文章列表`}>
   <section class="content-section">
     <div class="page-title">
-      <p class="eyebrow">Tag</p>
-      <h1>#{tag}</h1>
+      <p class="eyebrow">Category</p>
+      <h1>{category}</h1>
       <p>共 {posts.length} 篇文章。</p>
     </div>
     <div class="feed-list">

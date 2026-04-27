@@ -1,15 +1,15 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import PortalLayout from "../layouts/PortalLayout.astro";
 import { siteConfig } from "../config/site";
 ---
 
-<BaseLayout title={`关于 | ${siteConfig.title}`} description="关于这个博客系统">
-  <section class="container section narrow">
+<PortalLayout title={`关于 | ${siteConfig.title}`} description="关于这个博客系统">
+  <section class="content-section">
     <div class="page-title">
       <p class="eyebrow">About</p>
       <h1>关于这个博客</h1>
     </div>
-    <div class="prose">
+    <div class="prose portal-prose-card">
       <p>
         这是一个以 <strong>Astro</strong> 为核心的静态博客系统，默认适合部署到
         <strong>GitHub Pages</strong> 或 <strong>Cloudflare Pages</strong>。
@@ -24,4 +24,4 @@ import { siteConfig } from "../config/site";
       </ul>
     </div>
   </section>
-</BaseLayout>
+</PortalLayout>

@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import PortalLayout from "../../layouts/PortalLayout.astro";
 import PostCard from "../../components/PostCard.astro";
 import { siteConfig } from "../../config/site";
 import { getPublishedPosts } from "../../utils/blog";
@@ -7,15 +7,15 @@ import { getPublishedPosts } from "../../utils/blog";
 const posts = await getPublishedPosts();
 ---
 
-<BaseLayout title={`文章 | ${siteConfig.title}`} description="博客文章列表页">
-  <section class="container section">
+<PortalLayout title={`文章 | ${siteConfig.title}`} description="博客文章列表页">
+  <section class="content-section">
     <div class="page-title">
-      <p class="eyebrow">Archive</p>
-      <h1>文章归档</h1>
-      <p>所有文章都来自 `src/content/blog/` 下的 Markdown 文件。</p>
+      <p class="eyebrow">All Posts</p>
+      <h1>文章列表</h1>
+      <p>所有文章都来自 `src/content/blog/` 下的 Markdown 文件，按发布时间倒序排列。</p>
     </div>
-    <div class="post-grid">
+    <div class="feed-list">
       {posts.map((post) => <PostCard post={post} />)}
     </div>
   </section>
-</BaseLayout>
+</PortalLayout>
