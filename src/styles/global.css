@@ -156,6 +156,23 @@ img {
   align-items: start;
 }
 
+.home-feed-shell {
+  display: grid;
+  grid-template-columns: 310px minmax(0, 1fr);
+  gap: 1.35rem;
+  align-items: start;
+  padding-top: 1.35rem;
+}
+
+.home-sidebar {
+  position: sticky;
+  top: 5.3rem;
+}
+
+.home-feed-main {
+  min-width: 0;
+}
+
 .portal-sidebar {
   position: sticky;
   top: 5.3rem;
@@ -345,6 +362,11 @@ img {
   place-items: center;
 }
 
+.hero-banner-full {
+  min-height: calc(100vh - 92px);
+  border-radius: var(--radius-xl);
+}
+
 .hero-banner::before {
   content: "";
   position: absolute;
@@ -387,6 +409,24 @@ img {
   justify-content: center;
   gap: 1.6rem;
   margin-top: 11rem;
+}
+
+.hero-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 2.2rem;
+  padding: 0.9rem 1.25rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  color: white;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+}
+
+.hero-scroll:hover {
+  background: rgba(255, 255, 255, 0.22);
 }
 
 .hero-pill {
@@ -639,7 +679,15 @@ img {
     grid-template-columns: 1fr;
   }
 
+  .home-feed-shell {
+    grid-template-columns: 1fr;
+  }
+
   .portal-sidebar {
+    position: static;
+  }
+
+  .home-sidebar {
     position: static;
   }
 
@@ -666,6 +714,10 @@ img {
 
   .hero-banner {
     min-height: 560px;
+  }
+
+  .hero-banner-full {
+    min-height: calc(100vh - 92px);
   }
 
   .hero-banner-actions {
