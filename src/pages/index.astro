@@ -13,28 +13,66 @@ const featuredPosts = posts.slice(0, 3);
 <BaseLayout>
   <section class="hero container">
     <div class="hero-copy">
-      <p class="eyebrow">Static-first personal publishing</p>
-      <h1>{siteConfig.title}</h1>
+      <p class="eyebrow">Personal Web / Notes / Experiments</p>
+      <h1>把个人博客做得更像一份正在生长的数字刊物。</h1>
       <p class="hero-text">{siteConfig.description}</p>
       <div class="hero-actions">
         <a class="button primary" href={withBase("/blog/")}>开始阅读</a>
         <a class="button secondary" href={withBase("/about/")}>了解站点</a>
       </div>
+      <div class="hero-pills">
+        <span class="pill">Astro</span>
+        <span class="pill">Static-first</span>
+        <span class="pill">GitHub Pages</span>
+        <span class="pill">Cloudflare Pages</span>
+      </div>
     </div>
     <div class="hero-panel">
-      <p>适合的场景</p>
-      <ul>
-        <li>技术写作</li>
-        <li>个人随笔</li>
-        <li>作品集展示</li>
-        <li>低成本全球分发</li>
-      </ul>
+      <div class="panel-card panel-card-primary">
+        <p>Now Publishing</p>
+        <h2>{featuredPosts.length} 篇置顶内容</h2>
+        <span>持续记录技术学习、个人表达和项目实验。</span>
+      </div>
+      <div class="panel-grid">
+        <div class="panel-card">
+          <p>Topics</p>
+          <h3>{tags.length}</h3>
+          <span>标签快速聚合不同主题。</span>
+        </div>
+        <div class="panel-card">
+          <p>Format</p>
+          <h3>MD + Astro</h3>
+          <span>写作体验轻，部署路径短。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container signal-strip">
+    <div class="signal-card">
+      <span class="signal-label">Focus</span>
+      <strong>技术写作</strong>
+      <p>更适合沉淀知识与项目复盘，而不是堆砌信息。</p>
+    </div>
+    <div class="signal-card">
+      <span class="signal-label">Look</span>
+      <strong>轻、快、锐利</strong>
+      <p>比传统博客模板更年轻，比作品集更适合长期写作。</p>
+    </div>
+    <div class="signal-card">
+      <span class="signal-label">Infra</span>
+      <strong>零服务器负担</strong>
+      <p>静态输出配合 CDN，部署和维护成本都更低。</p>
     </div>
   </section>
 
   <section class="container section">
     <div class="section-heading">
-      <h2>最新文章</h2>
+      <div>
+        <p class="eyebrow">Latest Drops</p>
+        <h2>最新文章</h2>
+        <p class="section-copy">最近发布的内容会先出现在这里，适合当作首页入口阅读。</p>
+      </div>
       <a href={withBase("/blog/")}>查看全部</a>
     </div>
     <div class="post-grid">
@@ -44,7 +82,11 @@ const featuredPosts = posts.slice(0, 3);
 
   <section class="container section">
     <div class="section-heading">
-      <h2>标签导航</h2>
+      <div>
+        <p class="eyebrow">Browse by Topic</p>
+        <h2>标签导航</h2>
+        <p class="section-copy">把写作拆成几个可快速切换的话题入口。</p>
+      </div>
     </div>
     <div class="tag-list">
       {

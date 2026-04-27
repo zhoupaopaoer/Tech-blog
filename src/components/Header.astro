@@ -7,7 +7,13 @@ const currentPath = Astro.url.pathname;
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href={withBase("/")}>{siteConfig.title}</a>
+    <a class="brand" href={withBase("/")}>
+      <span class="brand-mark">Z.</span>
+      <span class="brand-copy">
+        <span class="brand-kicker">Personal Web</span>
+        <span class="brand-title">{siteConfig.title}</span>
+      </span>
+    </a>
     <nav class="nav">
       {
         siteConfig.nav.map((item) => {

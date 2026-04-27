@@ -20,10 +20,15 @@ const { post } = Astro.props;
       )
     }
   </div>
+  <span class="post-kicker">Fresh Note</span>
   <h2>
     <a href={withBase(`/blog/${post.id.replace(/\.md$/, "")}/`)}>
       {post.data.title}
     </a>
   </h2>
   <p>{post.data.description}</p>
+  <div class="post-readmore">
+    <span>阅读全文</span>
+    <span aria-hidden="true">↗</span>
+  </div>
 </article>

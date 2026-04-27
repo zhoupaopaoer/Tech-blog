@@ -4,7 +4,10 @@ import { siteConfig } from "../config/site";
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <p>© {new Date().getFullYear()} {siteConfig.author}. Built with Astro.</p>
+    <div class="footer-copy">
+      <p class="footer-kicker">Publishing from the edge of notes and code.</p>
+      <p>© {new Date().getFullYear()} {siteConfig.author}. Built with Astro.</p>
+    </div>
     <div class="social-links">
       {
         siteConfig.socialLinks.map((link) => (
