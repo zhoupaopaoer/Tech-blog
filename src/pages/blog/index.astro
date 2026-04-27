@@ -15,7 +15,7 @@ const posts = await getPublishedPosts();
       <p>所有文章都来自 `src/content/blog/` 下的 Markdown 文件，按发布时间倒序排列。</p>
     </div>
     <div class="feed-list">
-      {posts.map((post) => <PostCard post={post} />)}
+      {posts.map((post, index) => <PostCard post={post} index={index} />)}
     </div>
   </section>
 </PortalLayout>

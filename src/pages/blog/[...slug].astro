@@ -57,7 +57,7 @@ const relatedPosts = getRelatedPosts(post, posts);
             </div>
           </div>
           <div class="feed-list">
-            {relatedPosts.map((relatedPost) => <PostCard post={relatedPost} />)}
+            {relatedPosts.map((relatedPost, index) => <PostCard post={relatedPost} index={index} />)}
           </div>
         </section>
       )

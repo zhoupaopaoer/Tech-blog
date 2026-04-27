@@ -2,52 +2,32 @@
 import PortalLayout from "../layouts/PortalLayout.astro";
 import PostCard from "../components/PostCard.astro";
 import { siteConfig } from "../config/site";
-import { getAllTags, getPublishedPosts } from "../utils/blog";
+import { getPublishedPosts } from "../utils/blog";
 import { withBase } from "../utils/links";
 
 const posts = await getPublishedPosts();
-const tags = getAllTags(posts);
-const featuredPost = posts[0];
-const recentPosts = posts.slice(1, 5);
+const recentPosts = posts.slice(0, 6);
 ---
 
 <PortalLayout>
-  <section class="portal-hero">
-    <div class="hero-main-card">
-      <p class="eyebrow">Featured Note</p>
-      <h1>{siteConfig.title}</h1>
-      <p class="hero-summary">{siteConfig.description}</p>
-      <div class="hero-actions">
-        <a class="button primary" href={withBase("/blog/")}>开始阅读</a>
-        <a class="button secondary" href={withBase("/search/")}>搜索内容</a>
-      </div>
-      <div class="hero-chip-list">
-        <span class="hero-chip">静态博客</span>
-        <span class="hero-chip">数字花园</span>
-        <span class="hero-chip">Astro</span>
+  <section
+    class="hero-banner"
+    style={`background-image: linear-gradient(rgba(14, 21, 40, 0.28), rgba(14, 21, 40, 0.38)), url(${withBase(siteConfig.homeHero.image)})`}
+  >
+    <div class="hero-banner-inner">
+      <p class="hero-banner-tip">欢迎来到我的博客</p>
+      <h1>{siteConfig.homeHero.title}</h1>
+      <p>{siteConfig.homeHero.subtitle}</p>
+      <div class="hero-banner-actions">
+        {
+          siteConfig.homeHero.categories.map((category) => (
+            <a class="hero-pill" href={withBase(`/categories/${encodeURIComponent(category)}/`)}>
+              {category}
+            </a>
+          ))
+        }
       </div>
     </div>
-
-    {
-      featuredPost && (
-        <a class="feature-story" href={withBase(`/blog/${featuredPost.id.replace(/\.md$/, "")}/`)}>
-          <div class="feature-story-art">
-            <span>{featuredPost.data.category}</span>
-          </div>
-          <div class="feature-story-copy">
-            <p class="eyebrow">Featured Post</p>
-            <h2>{featuredPost.data.title}</h2>
-            <p>{featuredPost.data.description}</p>
-            <div class="post-meta">
-              <time datetime={featuredPost.data.pubDate.toISOString()}>
-                {featuredPost.data.pubDate.toLocaleDateString("zh-CN")}
-              </time>
-              <span>{featuredPost.data.tags.join(" / ")}</span>
-            </div>
-          </div>
-        </a>
-      )
-    }
   </section>
 
   <section class="content-section">
@@ -59,26 +39,7 @@ const recentPosts = posts.slice(1, 5);
       <a href={withBase("/blog/")}>查看全部</a>
     </div>
     <div class="feed-list">
-      {recentPosts.map((post) => <PostCard post={post} />)}
-    </div>
-  </section>
-
-  <section class="content-section">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">Topic Index</p>
-        <h2>标签入口</h2>
-      </div>
-      <a href={withBase("/archive/")}>查看归档</a>
-    </div>
-    <div class="tag-grid">
-      {
-        tags.map((tag) => (
-          <a class="topic-tile" href={withBase(`/tags/${encodeURIComponent(tag)}/`)}>
-            <span>#{tag}</span>
-          </a>
-        ))
-      }
+      {recentPosts.map((post, index) => <PostCard post={post} index={index} />)}
     </div>
   </section>
 </PortalLayout>

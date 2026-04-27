@@ -5,10 +5,17 @@ export const siteConfig = {
   lang: "zh-CN",
   profile: {
     name: "Zhou",
-    tagline: "Builder, learner, note-taker.",
-    bio: "这里是我的个人博客，主要记录前端、AI、效率工具和学习过程中的真实想法。",
+    tagline: "乐于探索互联网新技术，程序开发者",
+    bio: "这里主要分享技术博客、效率工具、AI 应用和个人项目记录，希望把零散的学习过程沉淀成有用的内容。",
     location: "China",
-    email: "hello@example.com"
+    email: "hello@example.com",
+    avatar: "/images/avatar-sunset.svg"
+  },
+  homeHero: {
+    image: "/images/hero-mountains.svg",
+    title: "Zhou 的技术小站",
+    subtitle: "记录学习、开发与持续探索",
+    categories: ["技术搭建", "写作系统", "关于我"]
   },
   announcement: {
     title: "站点公告",
@@ -24,7 +31,8 @@ export const siteConfig = {
   ],
   socialLinks: [
     { href: "https://github.com/zhoupaopaoer", label: "GitHub" },
-    // { href: "https://x.com/yourname", label: "X / Twitter" }
+    { href: "mailto:hello@example.com", label: "Email" },
+    { href: `${"/rss.xml"}`, label: "RSS" }
   ],
   quickLinks: [
     { href: "/blog", label: "最近文章" },

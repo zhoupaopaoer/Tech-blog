@@ -2,7 +2,7 @@
 import { siteConfig } from "../config/site";
 import {
   getAllCategories,
-  getArchiveGroups,
+  getAllTags,
   getPublishedPosts
 } from "../utils/blog";
 import { withBase } from "../utils/links";
@@ -14,7 +14,7 @@ interface Props {
 const { currentPath } = Astro.props;
 const posts = await getPublishedPosts();
 const categories = getAllCategories(posts);
-const archives = getArchiveGroups(posts);
+const tags = getAllTags(posts);
 
 function isActive(path: string) {
   const href = withBase(path);
@@ -26,12 +26,45 @@ function isActive(path: string) {
 
 <div class="sidebar-stack">
   <section class="sidebar-card profile-card">
-    <div class="profile-avatar">Z</div>
+    <img
+      class="profile-avatar-image"
+      src={withBase(siteConfig.profile.avatar)}
+      alt={`${siteConfig.profile.name} avatar`}
+    />
     <div class="profile-copy">
       <p class="sidebar-kicker">About Me</p>
       <h2>{siteConfig.profile.name}</h2>
       <p class="profile-tagline">{siteConfig.profile.tagline}</p>
-      <p>{siteConfig.profile.bio}</p>
+      <p class="profile-bio">{siteConfig.profile.bio}</p>
+    </div>
+    <div class="profile-stats">
+      <div class="stat-item">
+        <span>文章</span>
+        <strong>{posts.length}</strong>
+      </div>
+      <div class="stat-item">
+        <span>分类</span>
+        <strong>{categories.length}</strong>
+      </div>
+      <div class="stat-item">
+        <span>标签</span>
+        <strong>{tags.length}</strong>
+      </div>
+    </div>
+    <div class="profile-socials">
+      {
+        siteConfig.socialLinks.map((link) => (
+          <a
+            class="profile-social"
+            href={link.label === "RSS" ? withBase("/rss.xml") : link.href}
+            target={link.label === "Email" || link.label === "RSS" ? undefined : "_blank"}
+            rel={link.label === "Email" || link.label === "RSS" ? undefined : "noreferrer"}
+            aria-label={link.label}
+          >
+            {link.label.slice(0, 2)}
+          </a>
+        ))
+      }
     </div>
     <div class="profile-meta">
       <span>{siteConfig.profile.location}</span>
@@ -66,23 +99,6 @@ function isActive(path: string) {
           <a class="sidebar-row" href={withBase(`/categories/${encodeURIComponent(category)}/`)}>
             <span>{category}</span>
             <span>{posts.filter((post) => post.data.category === category).length}</span>
-          </a>
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="sidebar-card">
-    <div class="sidebar-heading">
-      <p class="sidebar-kicker">Archive</p>
-      <h3>历史归档</h3>
-    </div>
-    <div class="sidebar-list">
-      {
-        archives.map((archive) => (
-          <a class="sidebar-row" href={withBase(`/archive/#year-${archive.year}`)}>
-            <span>{archive.year}</span>
-            <span>{archive.posts.length}</span>
           </a>
         ))
       }

@@ -4,6 +4,7 @@ description: "个人博客对稳定性、成本和可迁移性的要求，往往
 pubDate: 2026-04-24
 updatedDate: 2026-04-26
 category: 写作系统
+hero: /images/cover-static.svg
 tags:
   - Hugo
   - Cloudflare Pages

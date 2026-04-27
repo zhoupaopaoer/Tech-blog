@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
+  <defs>
+    <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#171b24"/>
+      <stop offset="100%" stop-color="#2f2b48"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#g2)"/>
+  <rect x="86" y="86" width="250" height="48" rx="24" fill="#d4ff78"/>
+  <text x="118" y="119" fill="#162010" font-family="Arial, sans-serif" font-size="24">Static Writing System</text>
+  <text x="92" y="258" fill="#fff5e9" font-family="Arial, sans-serif" font-size="84" font-weight="700">为什么个人博客</text>
+  <text x="92" y="354" fill="#fff5e9" font-family="Arial, sans-serif" font-size="84" font-weight="700">更适合静态站</text>
+  <text x="95" y="438" fill="#d8d4ef" font-family="Arial, sans-serif" font-size="32">低成本、可迁移、适合长期积累</text>
+  <g stroke="#8da4ff" opacity="0.3">
+    <path d="M780 90v540"/>
+    <path d="M900 90v540"/>
+    <path d="M1020 90v540"/>
+    <path d="M1140 90v540"/>
+    <path d="M760 180h360"/>
+    <path d="M760 300h360"/>
+    <path d="M760 420h360"/>
+    <path d="M760 540h360"/>
+  </g>
+</svg>

@@ -3,6 +3,7 @@ title: "用 Astro 搭建第一篇博客"
 description: "从零开始初始化一个可部署到 GitHub Pages 和 Cloudflare Pages 的个人博客。"
 pubDate: 2026-04-26
 category: 技术搭建
+hero: /images/cover-astro.svg
 tags:
   - Astro
   - 静态博客
