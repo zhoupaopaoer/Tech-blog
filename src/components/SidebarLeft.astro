@@ -9,12 +9,14 @@ import { withBase } from "../utils/links";
 
 interface Props {
   currentPath: string;
+  homeMode?: boolean;
 }
 
-const { currentPath } = Astro.props;
+const { currentPath, homeMode = false } = Astro.props;
 const posts = await getPublishedPosts();
 const categories = getAllCategories(posts);
 const tags = getAllTags(posts);
+const latestPosts = posts.slice(0, 5);
 
 function isActive(path: string) {
   const href = withBase(path);
@@ -72,6 +74,51 @@ function isActive(path: string) {
     </div>
   </section>
 
+  <section class="sidebar-card latest-card">
+    <div class="sidebar-heading">
+      <p class="sidebar-kicker">Latest</p>
+      <h3>最近发布</h3>
+    </div>
+    <div class="latest-sidebar-list">
+      {
+        latestPosts.map((post) => (
+          <a class="latest-sidebar-item" href={withBase(`/blog/${post.id.replace(/\.md$/, "")}/`)}>
+            <img
+              class="latest-sidebar-cover"
+              src={withBase(post.data.hero || "/images/cover-astro.svg")}
+              alt={post.data.title}
+            />
+            <div class="latest-sidebar-copy">
+              <strong>{post.data.title}</strong>
+              <span>{post.data.pubDate.toLocaleDateString("zh-CN")}</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="sidebar-card announcement-card">
+    <div class="sidebar-heading">
+      <p class="sidebar-kicker">Notice</p>
+      <h3>公告</h3>
+    </div>
+    <div class="announcement-body">
+      <p class="announcement-title">欢迎来到 {siteConfig.title}</p>
+      <div class="announcement-pill">免责声明</div>
+      <p>⚠️ 本站内容仅代表个人观点，可转载，但请注明出处。</p>
+      <p>⚠️ 本人分享内容仅供学习参考使用，请勿用于其他用途。</p>
+      <div class="announcement-pill">关于我</div>
+      <p>一枚混迹多年的程序员，喜欢做知识分享与项目记录。</p>
+      <p>
+        有问题欢迎
+        <a href={`mailto:${siteConfig.profile.email}`}>联系我</a>
+      </p>
+    </div>
+  </section>
+
+  {
+    !homeMode && (
   <section class="sidebar-card">
     <div class="sidebar-heading">
       <p class="sidebar-kicker">Navigation</p>
@@ -87,7 +134,11 @@ function isActive(path: string) {
       }
     </nav>
   </section>
+    )
+  }
 
+  {
+    !homeMode && (
   <section class="sidebar-card">
     <div class="sidebar-heading">
       <p class="sidebar-kicker">Categories</p>
@@ -104,4 +155,6 @@ function isActive(path: string) {
       }
     </div>
   </section>
+    )
+  }
 </div>

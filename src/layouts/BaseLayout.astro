@@ -9,12 +9,14 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  hideHeader?: boolean;
 }
 
 const {
   title = siteConfig.title,
   description = siteConfig.description,
-  image = "/favicon.svg"
+  image = "/favicon.svg",
+  hideHeader = false
 } = Astro.props;
 
 const canonicalUrl = Astro.site
@@ -50,7 +52,7 @@ const ogImage = Astro.site ? new URL(ogImagePath, Astro.site).toString() : ogIma
   </head>
   <body>
     <div class="site-shell">
-      <Header />
+      {!hideHeader && <Header />}
       <main class="page">
         <slot />
       </main>

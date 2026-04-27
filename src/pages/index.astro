@@ -10,11 +10,29 @@ const posts = await getPublishedPosts();
 const recentPosts = posts.slice(0, 6);
 ---
 
-<BaseLayout>
+<BaseLayout hideHeader={true}>
   <section
     class="hero-banner hero-banner-full"
     style={`background-image: linear-gradient(rgba(14, 21, 40, 0.28), rgba(14, 21, 40, 0.38)), url(${withBase(siteConfig.homeHero.image)})`}
   >
+    <div class="hero-topbar">
+      <a class="hero-brand" href={withBase("/")}>
+        <span class="hero-brand-mark">Z.</span>
+        <span class="hero-brand-copy">
+          <span class="hero-brand-kicker">PERSONAL WEB</span>
+          <span class="hero-brand-title">{siteConfig.title}</span>
+        </span>
+      </a>
+      <nav class="hero-nav">
+        {
+          siteConfig.nav.map((item) => (
+            <a class="hero-nav-link" href={withBase(item.href)}>
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
     <div class="hero-banner-inner">
       <p class="hero-banner-tip">欢迎来到我的博客</p>
       <h1>{siteConfig.homeHero.title}</h1>
@@ -28,28 +46,38 @@ const recentPosts = posts.slice(0, 6);
           ))
         }
       </div>
-      <a class="hero-scroll" href="#home-feed" aria-label="开始阅读并滚动到下一屏">
+      <button class="hero-scroll" id="hero-scroll" type="button" aria-label="开始阅读并滚动到下一屏">
         <span>开始阅读</span>
-        <span aria-hidden="true">↓</span>
-      </a>
+        <span class="hero-scroll-arrow" aria-hidden="true">↓</span>
+      </button>
     </div>
   </section>
 
   <section class="container home-feed-shell" id="home-feed">
     <aside class="home-sidebar">
-      <SidebarLeft currentPath={Astro.url.pathname} />
+      <SidebarLeft currentPath={Astro.url.pathname} homeMode={true} />
     </aside>
     <div class="home-feed-main">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Latest Articles</p>
-          <h2>最近更新</h2>
-        </div>
-        <a href={withBase("/blog/")}>查看全部</a>
-      </div>
       <div class="feed-list">
         {recentPosts.map((post, index) => <PostCard post={post} index={index} />)}
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    const heroScrollButton = document.querySelector("#hero-scroll");
+    const homeFeedSection = document.querySelector("#home-feed");
+
+    heroScrollButton?.addEventListener("click", () => {
+      homeFeedSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    heroScrollButton?.addEventListener("mouseenter", () => {
+      heroScrollButton.classList.add("active");
+    });
+
+    heroScrollButton?.addEventListener("mouseleave", () => {
+      heroScrollButton.classList.remove("active");
+    });
+  </script>
 </BaseLayout>
